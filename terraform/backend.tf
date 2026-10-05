@@ -1,13 +1,15 @@
 terraform {
-    backend "s3" {
-        bucket = "mra-bucket"
-        key = "./terraform.tfstate"  
-        region = "ru-central1" 
-        endpoint = "https://storage.yandexcloud.net"
-        skip_region_validation = true
-        skip_credentials_validation = true
-        encrypt = true
-        skip_requesting_account_id   = true
-        force_path_style = true
-    }   
+backend "s3" {
+    bucket = "mra-bucket"
+    endpoints = {
+      s3 = "https://storage.yandexcloud.net"
+    }
+    region = "ru-central1"
+    key    = "./terraform.tfstate"
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true # нужно для Terraform 1.6.1 и старше
+    skip_s3_checksum            = true # нужно для Terraform 1.6.3 и старше
+  }
 }

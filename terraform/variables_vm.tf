@@ -1,6 +1,6 @@
 variable "vm_os_family" {
   type        = string
-  default     = "ubuntu-2404-lts"
+  default     = "ubuntu-2604-lts"
   description = "OS type"
 }
 
